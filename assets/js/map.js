@@ -1,8 +1,8 @@
 var map = L.map('map', {
     center: [-16.398864, -71.536964],
-    zoom: 10,
+    zoom: 18,
     minZoom: 8,
-    maxZoom: 20,
+    maxZoom: 30,
     maxBounds: [[-17.8089,-75.5797], [-13.9102,-70.2623]]
   });
 
@@ -44,6 +44,15 @@ var arequipa = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?
   });
 arequipa.addTo(map);
 
+var provincias = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
+    layers: "webarequipa:provincias", //gisweb:provincias_arequipa
+   format: 'image/png',
+   transparent: true,
+   version: '1.1.1',
+    attribution: "SENCICO"
+  });
+provincias.addTo(map);
+
 var distritos = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
     layers: "webarequipa:distritos", //gisweb:distritos_arequipa
    format: 'image/png',
@@ -52,6 +61,15 @@ var distritos = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms
     attribution: "SENCICO"
   });
 distritos.addTo(map);
+
+var bancos = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
+    layers: "webarequipa:bancos", //gisweb:bancos_arequipa
+   format: 'image/png',
+   transparent: true,
+   version: '1.1.1',
+    attribution: "SENCICO"
+  });
+bancos.addTo(map);
 
 var colegios = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
     layers: "webarequipa:colegios", //gisweb:colegios_arequipa
@@ -79,6 +97,15 @@ var estaciones = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wm
     attribution: "SENCICO"
   });
 estaciones.addTo(map);
+
+var estacionamientos = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
+    layers: "	webarequipa:estacionamientos", //gisweb:cocheras_arequipa
+   format: 'image/png',
+   transparent: true,
+   version: '1.1.1',
+    attribution: "SENCICO"
+  });
+estacionamientos.addTo(map);
 
 var farmacias = L.tileLayer.wms("http://localhost:8080/geoserver/webarequipa/wms?", {
     layers: "webarequipa:farmacias", //gisweb:farmacias_arequipa
@@ -142,10 +169,13 @@ var baseMaps = {                       // para las bases
   "OSM": basemapOSM,
   };
 var overlayMaps = {                             // agregar las capas y no olvidar la coma
-  "Delimitación Arequipa": arequipa,
-  "Distritos de Arequipa": distritos,
-  "Colegios": colegios,
+ "Delimitación Arequipa": arequipa,
+  "Provincias": provincias,
+  "Distritos": distritos,
   "Centros Comerciales": comerciales,
+  "Colegios": colegios,
+  "Entidades bancarias": bancos,
+  "Estacionamiento/Cochera": estacionamientos,
   "Estaciones de Servicio": estaciones,
   "Farmacias": farmacias,
   "Hoteles": hoteles,
